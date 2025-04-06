@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Utilisateur</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .profile-container {
+      background-color: white;
+      margin: 50px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .profile-header {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .profile-info {
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
 
+  <div class="profile-container">
+    <div class="profile-header">
+      Profil de <span id="user-id">Chargement...</span>
+    </div>
+    <div class="profile-info">
+      <p>Nom d'utilisateur : <span id="username">NomUtilisateur</span></p>
+      <p>Autres informations...</p>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour récupérer l'ID de l'URL
+    function getUserIdFromUrl() {
+      const path = window.location.pathname.split('/');
+      return path[path.length - 2]; // Récupère l'ID à partir de l'URL
+    }
+
+    // Récupère l'ID de l'utilisateur
+    const userId = getUserIdFromUrl();
+    document.getElementById("user-id").textContent = userId;
+
+    // Simuler un pseudo pour l'exemple
+    document.getElementById("username").textContent = userId.replace('user_', 'Utilisateur ');
+  </script>
+
+</body>
+</html>
