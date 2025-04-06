@@ -54,14 +54,27 @@
     button:hover {
       background-color: #0090d1;
     }
+
+    .link {
+      display: block;
+      margin-top: 15px;
+      text-decoration: underline;
+      color: #0077cc;
+      cursor: pointer;
+    }
+    
+    .link:hover {
+      color: #005fa3;
+    }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h2>Se connecter</h2> <!-- Titre changé en gras -->
+    <h2>Se connecter</h2>
     <input type="text" placeholder="Nom d'utilisateur" />
     <input type="password" placeholder="Mot de passe" />
     <button>Se connecter</button>
+    <a class="link" href="index.html">Créer un nouveau compte</a> <!-- Nouveau lien ajouté ici -->
   </div>
 </body>
 </html>
