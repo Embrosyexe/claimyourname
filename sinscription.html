@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créer un compte - ClaimYourName</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #00b2ff;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background-color: #0090d1;
+    }
+
+    .link {
+      display: block;
+      margin-top: 15px;
+      text-decoration: underline;
+      color: #0077cc;
+      cursor: pointer;
+    }
+    
+    .link:hover {
+      color: #005fa3;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Créer un compte</h2>
+    <input id="username" type="text" placeholder="Nom d'utilisateur" />
+    <input id="password" type="password" placeholder="Mot de passe" />
+    <button id="signup-button">Créer un compte</button>
+    <div id="error-message" class="error-message">Ce pseudo existe déjà</div>
+    <a class="link" href="connexion.html">Se connecter</a>
+  </div>
+
+  <script>
+    // Exemple de base de données fictive des utilisateurs
+    const users = [
+      { username: 'user1', password: 'password123' },
+      { username: 'user2', password: '12345' }
+    ];
+
+    document.getElementById('signup-button').addEventListener('click', function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Vérification si le pseudo existe déjà
+      const userExists = users.some(user => user.username === username);
+
+      if (userExists) {
+        // Affichage du message d'erreur si le pseudo existe déjà
+        document.getElementById('error-message').style.display = 'block';
+      } else {
+        // Enregistrer l'utilisateur (ici dans l'exemple, on l'ajoute à la base fictive)
+        users.push({ username, password });
+
+        // Redirection vers la page de connexion après l'inscription
+        window.location.href = 'connexion.html';
+      }
+    });
+  </script>
+
+</body>
+</html>
