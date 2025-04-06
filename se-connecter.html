@@ -28,7 +28,6 @@
     .form-container h2 {
       margin-bottom: 20px;
       color: #222;
-      font-weight: bold; /* Texte en gras */
     }
 
     input[type="text"], input[type="password"] {
@@ -71,10 +70,45 @@
 <body>
   <div class="form-container">
     <h2>Se connecter</h2>
-    <input type="text" placeholder="Nom d'utilisateur" />
+    <input id="username" type="text" placeholder="Nom d'utilisateur" />
     <input type="password" placeholder="Mot de passe" />
-    <button>Se connecter</button>
-    <a class="link" href="index.html">Créer un nouveau compte</a> <!-- Nouveau lien ajouté ici -->
+    <button id="login-button">Se connecter</button>
+    <a class="link" href="index.html">Créer un compte</a>
   </div>
+
+  <!-- Notification Discord via Webhook lors de la connexion -->
+  <script>
+    const webhookUrl = "https://discord.com/api/webhooks/1358389159127154748/Xt096LVu3tzwb-Pc8KK1wwrIuzN4ubavLDXafCoYaw6FgwG5RLE232xY0ItvJUyxUC3E"; // Remplacez par votre URL de webhook Discord
+
+    document.getElementById('login-button').addEventListener('click', async function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+
+      // Message de notification
+      const data = {
+        content: `**Tentative de connexion**\nUtilisateur : ${username}`
+      };
+
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      alert('Connexion réussie !');
+    });
+  </script>
+
+  <!-- Dynamisation du pseudo utilisateur -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    if (username) {
+      const userNameElements = document.querySelectorAll('.user-name');
+      userNameElements.forEach(element => {
+        element.textContent = username;
+      });
+    }
+  </script>
 </body>
 </html>
