@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Se connecter</title>
+  <title>Se connecter - ClaimYourName</title>
   <style>
     body {
       margin: 0;
@@ -65,50 +65,49 @@
     .link:hover {
       color: #005fa3;
     }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
   </style>
 </head>
 <body>
+
   <div class="form-container">
     <h2>Se connecter</h2>
     <input id="username" type="text" placeholder="Nom d'utilisateur" />
-    <input type="password" placeholder="Mot de passe" />
+    <input id="password" type="password" placeholder="Mot de passe" />
     <button id="login-button">Se connecter</button>
-    <a class="link" href="index.html">Créer un compte</a>
+    <div id="error-message" class="error-message">Mot de passe incorrect</div>
+    <a class="link" href="inscription.html">Créer un compte</a>
   </div>
 
-  <!-- Notification Discord via Webhook lors de la connexion -->
   <script>
-    const webhookUrl = "https://discord.com/api/webhooks/1358389159127154748/Xt096LVu3tzwb-Pc8KK1wwrIuzN4ubavLDXafCoYaw6FgwG5RLE232xY0ItvJUyxUC3E"; // Remplacez par votre URL de webhook Discord
+    // Exemple de base de données fictive des utilisateurs
+    const users = [
+      { username: 'user1', password: 'password123' },
+      { username: 'user2', password: '12345' }
+    ];
 
-    document.getElementById('login-button').addEventListener('click', async function(event) {
+    document.getElementById('login-button').addEventListener('click', function(event) {
       event.preventDefault();
+
       const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-      // Message de notification
-      const data = {
-        content: `**Tentative de connexion**\nUtilisateur : ${username}`
-      };
+      const user = users.find(user => user.username === username);
 
-      await fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-
-      alert('Connexion réussie !');
+      if (user && user.password === password) {
+        // Redirection vers le dashboard si le mot de passe est correct
+        window.location.href = `dashboard.html?username=${username}`;
+      } else {
+        // Affichage du message d'erreur si le mot de passe est incorrect
+        document.getElementById('error-message').style.display = 'block';
+      }
     });
   </script>
 
-  <!-- Dynamisation du pseudo utilisateur -->
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('username');
-    if (username) {
-      const userNameElements = document.querySelectorAll('.user-name');
-      userNameElements.forEach(element => {
-        element.textContent = username;
-      });
-    }
-  </script>
 </body>
 </html>
