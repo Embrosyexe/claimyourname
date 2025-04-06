@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compte créé</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lucky+Guy&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .header {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-family: 'Lucky Guy', cursive;
+      font-size: 48px;
+      color: red;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-info span {
+      margin-right: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .settings-icon {
+      width: 20px;
+      height: 20px;
+      background-color: #00b2ff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .settings-icon:hover {
+      background-color: #0090d1;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .message {
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">CLYRNA</div>
+    <div class="user-info">
+      <span>Utilisateur: <strong>NomDuPseudo</strong></span>
+      <div class="settings-icon">⚙️</div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="message">Bienvenue sur votre compte !</div>
+  </div>
+</body>
+</html>
