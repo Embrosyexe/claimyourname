@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - ClaimYourName</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
 
+    .dashboard-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .dashboard-container h2 {
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .user-info {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e60000;
+    }
+
+    .link {
+      display: block;
+      margin-top: 15px;
+      text-decoration: underline;
+      color: #0077cc;
+      cursor: pointer;
+    }
+    
+    .link:hover {
+      color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <h2>Bienvenue sur ton Dashboard</h2>
+
+    <div class="user-info">
+      <p><strong>Nom d'utilisateur : </strong><span class="user-name">Chargement...</span></p>
+      <p><strong>Mot de passe : </strong><span class="user-password">********</span></p>
+    </div>
+
+    <!-- Optionnel : Bouton de déconnexion -->
+    <button id="logout-button">Se déconnecter</button>
+  </div>
+
+  <script>
+    // Récupération du nom d'utilisateur depuis l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
+    // Affichage du nom d'utilisateur sur la page
+    if (username) {
+      const userNameElements = document.querySelectorAll('.user-name');
+      userNameElements.forEach(element => {
+        element.textContent = username;
+      });
+    } else {
+      alert("Aucun nom d'utilisateur trouvé !");
+    }
+
+    // Fonction pour déconnexion (en redirigeant vers la page d'accueil ou autre)
+    document.getElementById('logout-button').addEventListener('click', function() {
+      // Exemple : redirige vers la page d'accueil
+      window.location.href = 'index.html';
+    });
+  </script>
+
+</body>
+</html>
